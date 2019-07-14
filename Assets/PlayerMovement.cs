@@ -15,30 +15,37 @@ public class PlayerMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		rb.AddForce(force * new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")));
 
-		//y-axis rotation
-		if (Input.GetKey("q")) {
-			rb.AddTorque(transform.up * torque);
-		}
-		if (Input.GetKey("e")) {
-			rb.AddTorque(transform.up * -torque);
-		}
+        rb.AddForce(force * transform.forward * Input.GetAxis("Thrust"));
 
-		//vertical (z-axis) rotation
-		if (Input.GetKey("w")) {
-			rb.AddTorque(transform.forward * torque);
-		}
-		if (Input.GetKey("s")) {
-			rb.AddTorque(transform.forward * -torque);
-		}
+        //y-axis rotation
+        if (Input.GetKey("q"))
+        {
+            rb.AddTorque(transform.forward * torque);
+        }
+        if (Input.GetKey("e"))
+        {
+            rb.AddTorque(transform.forward * -torque);
+        }
 
-		//horizontal (x-axis) rotation
-		if (Input.GetKey("d")) {
-			rb.AddTorque(transform.right * torque);
-		}
-		if (Input.GetKey("a")) {
-			rb.AddTorque(transform.right * -torque);
-		}
-	}
+        //vertical (z-axis) rotation
+        if (Input.GetKey("w"))
+        {
+            rb.AddTorque(transform.right * torque);
+        }
+        if (Input.GetKey("s"))
+        {
+            rb.AddTorque(transform.right * -torque);
+        }
+
+        //horizontal (x-axis) rotation
+        if (Input.GetKey("d"))
+        {
+            rb.AddTorque(transform.up * torque);
+        }
+        if (Input.GetKey("a"))
+        {
+            rb.AddTorque(transform.up * -torque);
+        }
+    }
 }
